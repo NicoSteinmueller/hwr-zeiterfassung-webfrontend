@@ -1,0 +1,26 @@
+:root {
+  --headerOffset: 4rem;
+  --buttonPadding: 10px;
+  --buttonRadius: 4px;
+  --defaultTextColor: white;
+  --primaryRed: #f92247;
+  --secondaryRed: #db0025;
+  --primaryBlue: #0d2253;
+  --secondaryBlue: #709be7;
+  --defaultBackgroundColor: var(--primaryBlue);
+  --backgroundImage: linear-gradient(
+      0deg,
+      rgba(13, 34, 83, 0.95),
+      rgba(13, 34, 83, 0.95)
+    ),
+    url(./images/the-persistence-of-memory-1931.jpeg);
+
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  color: var(--defaultTextColor);
+}
