@@ -1,10 +1,16 @@
+
+import Greeting from "../components/Greeting";
 import Navigation from "../components/Navigation";
+import Logo from "../components/Logo";
+
 
 function AppHeader() {
   return (
-      <div> 
+    <div className="appheader-container">
+      <Logo /> 
+      <Greeting />
       <Navigation />
-      </div>
+    </div>
   );
 }
 
