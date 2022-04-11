@@ -1,5 +1,7 @@
 :root {
   --headerOffset: 4.0rem;
+  --buttonPadding: 10px;
+  --buttonRadius: 4px;
 }
 
 * {
@@ -12,34 +14,58 @@
 
 }
 
-.navbar{
-  background: #0D2253;
+.appheader-container{
   position: fixed;
   top: 0;
   width: 100%;
+  background: #0D2253;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 7vw;
+}
+
+.appheader-container p{
+  color: white;
   font-size: 1.2rem;
 }
 
-.nav-container {
-  display: flex;
-  justify-content: space-between;
-  list-style: none;
-  margin: 0 auto;
-  padding: 0 50px;
-  align-items: center;
+.unicorn{
   height: var(--headerOffset);
+}
+
+.nav-container {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 1vw;
 }
 
 .navbar a{
   color: white;
- 
+  border-radius: var(--buttonRadius);
+  border-color: white;
+  border-style: solid;
+  border-width: 1px;
+  padding: var(--buttonPadding);
+  text-decoration: none;
+}
+
+.navbar a:hover{
+  background-color: white;
+  color: #0D2253;
+}
+
+.nav-item :active{
+  background-color: white;
+  color: #0D2253;
 }
 
 .button {
   display: flex;
   background: red;
-  border-radius: 4px;
-  padding: 5px;
+  border-radius: var(--buttonRadius);
+  padding: var(--buttonPadding);
 }
 
 .sider{
@@ -49,6 +75,7 @@
   right: 0;
   width: 20%;
   height: calc(100vh - var(--headerOffset));
+  color: white;
 }
 
 .pages-container :nth-child(n){
@@ -56,8 +83,13 @@
   height: calc(100vh - var(--headerOffset));
   background: linear-gradient(0deg, rgba(13, 34, 83, 0.96), rgba(13, 34, 83, 0.96)), url(./images/the-persistence-of-memory-1931.jpeg);
   background-size: cover;
+  color: white;
 }
 
 .pages-container :nth-child(1){
   padding-top: var(--headerOffset);
 }
+
+
+
+

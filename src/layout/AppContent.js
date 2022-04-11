@@ -7,7 +7,6 @@ import Profile from "../pages/Profile";
 function AppContent() {
   return (
     <div className="content">
-      <h1>Our Content</h1>
       <body>
         <div className="pages-container">
           <Timetracker />
