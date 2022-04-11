@@ -2,7 +2,6 @@
   --headerOffset: 4.0rem;
 }
 
-
 * {
   box-sizing: border-box;
   margin: 0;
@@ -44,9 +43,7 @@
 }
 
 .sider{
-  background: grey;
-  
-
+  background: transparent;
   position: fixed;
   top: var(--headerOffset);
   right: 0;
@@ -54,35 +51,13 @@
   height: calc(100vh - var(--headerOffset));
 }
 
-
-
-.timetracker{
-  background: violet;
-  height: 100vh;
-  padding-top: var(--headerOffset);
-}
-
-.statistics{
-  background: blue;
-  height: 100vh;
-}
-
-
-.absence{
-  background: green;
-  height: 100vh;
-}
-
-.profile{
-  background: rosybrown;
-  height: 100vh;
-}
-
-.correct{
-  background: red;
-  height: 100vh;
-}
-
 .pages-container :nth-child(n){
   scroll-margin-top: var(--headerOffset);
+  height: calc(100vh - var(--headerOffset));
+  background: linear-gradient(0deg, rgba(13, 34, 83, 0.96), rgba(13, 34, 83, 0.96)), url(./images/the-persistence-of-memory-1931.jpeg);
+  background-size: cover;
+}
+
+.pages-container :nth-child(1){
+  padding-top: var(--headerOffset);
 }
