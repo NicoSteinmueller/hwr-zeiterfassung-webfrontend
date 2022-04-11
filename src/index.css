@@ -1,13 +1,88 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+:root {
+  --headerOffset: 4.0rem;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  scroll-behavior: smooth;
+  scroll-snap-type: y proximity;
+
+}
+
+.navbar{
+  background: #0D2253;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  font-size: 1.2rem;
+}
+
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  list-style: none;
+  margin: 0 auto;
+  padding: 0 50px;
+  align-items: center;
+  height: var(--headerOffset);
+}
+
+.navbar a{
+  color: white;
+ 
+}
+
+.button {
+  display: flex;
+  background: red;
+  border-radius: 4px;
+  padding: 5px;
+}
+
+.sider{
+  background: grey;
+  
+
+  position: fixed;
+  top: var(--headerOffset);
+  right: 0;
+  width: 20%;
+  height: calc(100vh - var(--headerOffset));
+}
+
+
+
+.timetracker{
+  background: violet;
+  height: 100vh;
+  padding-top: var(--headerOffset);
+}
+
+.statistics{
+  background: blue;
+  height: 100vh;
+}
+
+
+.absence{
+  background: green;
+  height: 100vh;
+}
+
+.profile{
+  background: rosybrown;
+  height: 100vh;
+}
+
+.correct{
+  background: red;
+  height: 100vh;
+}
+
+.pages-container :nth-child(n){
+  scroll-margin-top: var(--headerOffset);
 }
