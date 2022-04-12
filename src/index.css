@@ -9,9 +9,6 @@
   margin: 0;
   padding: 0;
   font-family: sans-serif;
-  scroll-behavior: smooth;
-  scroll-snap-type: y proximity;
-
 }
 
 .appheader-container{
@@ -51,21 +48,25 @@
   text-decoration: none;
 }
 
+.button {
+  background: #F92247;
+  border-radius: var(--buttonRadius);
+  padding: var(--buttonPadding);
+}
+
 .navbar a:hover{
   background-color: white;
   color: #0D2253;
 }
 
-.nav-item :active{
-  background-color: white;
-  color: #0D2253;
+.navbar .button:hover{
+  background-color: #DB0025;
+  color: white;
 }
 
-.button {
-  display: flex;
-  background: red;
-  border-radius: var(--buttonRadius);
-  padding: var(--buttonPadding);
+.navbar a.active {
+  background-color: white;
+  color: #0D2253;
 }
 
 .sider{
@@ -78,18 +79,26 @@
   color: white;
 }
 
-.pages-container :nth-child(n){
+.pages-container section{
   scroll-margin-top: var(--headerOffset);
-  height: calc(100vh - var(--headerOffset));
-  background: linear-gradient(0deg, rgba(13, 34, 83, 0.96), rgba(13, 34, 83, 0.96)), url(./images/the-persistence-of-memory-1931.jpeg);
+  height: 100vh;
+  background: linear-gradient(0deg, rgba(13, 34, 83, 0.95), rgba(13, 34, 83, 0.95)), url(./images/the-persistence-of-memory-1931.jpeg);
   background-size: cover;
   color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .pages-container :nth-child(1){
-  padding-top: var(--headerOffset);
+    margin-top: var(--headerOffset);
 }
 
+.greeting{
+  font-size: 1.2rem;
+  color: white;
+  display:block; 
+}
 
 
 

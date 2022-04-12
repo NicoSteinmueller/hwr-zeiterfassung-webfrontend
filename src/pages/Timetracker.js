@@ -1,8 +1,8 @@
 function Timetracker() {
   return (
-    <div className="timetracker" id="timetracker">
+    <section className="timetracker" id="#timetracker">
       <h1>Zeiterfassung</h1>
-    </div>
+    </section>
   );
 }
 
