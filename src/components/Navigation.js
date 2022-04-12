@@ -1,34 +1,29 @@
 
+import React from "react";
+import { Link, animateScroll } from "react-scroll";
+
+const offset = 0;
+const duration = 500;
 
 function Navigation() {
   return (
     <div>
       <nav className="navbar">
         <ul className="nav-container">
-          <li className="nav-item">
-            <a href="#timetracker" className="nav-link">
-              Zeiterfassung
-            </a>
+          <li>
+            <Link activeClass="active" to="#timetracker" spy={true} smooth={true} offset={offset} duration={duration}> Zeiterfassung </Link>
           </li>
-          <li className="nav-item">
-            <a href="#correct" className="nav-link" >
-              Korrektur
-            </a>
+          <li>
+            <Link activeClass="active" to="#correct" spy={true} smooth={true} offset={offset} duration={duration}> Korrektur </Link>
           </li>
-          <li className="nav-item">
-            <a href="#statistics" className="nav-link">
-              Statistik
-            </a>
+          <li>
+            <Link activeClass="active" to="#statistics" spy={true} smooth={true} offset={offset} duration={duration}> Statistik </Link>
           </li>
-          <li className="nav-item">
-            <a href="#absence" className="nav-link" >
-              Abwesenheit
-            </a>
+          <li>
+            <Link activeClass="active" to="#absence" spy={true} smooth={true} offset={offset} duration={duration}> Abwesenheit </Link>
           </li>
-          <li className="nav-item">
-            <a href="#profile" className="nav-link" >
-              Profile
-            </a>
+          <li>
+            <Link activeClass="active" to="#profile" spy={true} smooth={true} offset={offset} duration={duration}> Profil </Link>
           </li>
           <li classNaame="nav-btn">
             <a href="#logout" className="button"> Abmelden</a>

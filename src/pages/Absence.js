@@ -1,8 +1,8 @@
 function Absence() {
     return (
-      <div className="absence" id="absence">
+      <section className="absence" id="#absence">
         <h1>Abwesenheit</h1>
-      </div>
+      </section>
     );
   }
   

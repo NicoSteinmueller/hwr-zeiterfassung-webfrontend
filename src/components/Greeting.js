@@ -1,5 +1,9 @@
+import FetchGreeting from "../fetchData/FetchGreeting";
+
 function Greeting(){
-    return <p> Hallo Nico Regenberg! </p>
+    return <div className="greeting"> 
+       <FetchGreeting />
+    </div>
 }
 
 export default Greeting;
