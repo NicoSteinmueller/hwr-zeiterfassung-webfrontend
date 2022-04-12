@@ -19,7 +19,6 @@ export default class FetchGreeting extends React.Component{
     };
 
     async componentDidMount(){
-        // const url =  "http://localhost:8080/login/basicLogin?email={Email}&password={Password}";
         const response = await fetch(url);
         const data = await response.json();
         this.setState(
