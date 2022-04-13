@@ -1,7 +1,20 @@
 :root {
-  --headerOffset: 4.0rem;
+  --headerOffset: 4rem;
   --buttonPadding: 10px;
   --buttonRadius: 4px;
+  --defaultTextColor: white;
+  --primaryRed: #f92247;
+  --secondaryRed: #db0025;
+  --primaryBlue: #0d2253;
+  --secondaryBlue: #709be7;
+  --defaultBackgroundColor: var(--primaryBlue);
+  --backgroundImage: linear-gradient(
+      0deg,
+      rgba(13, 34, 83, 0.95),
+      rgba(13, 34, 83, 0.95)
+    ),
+    url(./images/the-persistence-of-memory-1931.jpeg);
+
 }
 
 * {
@@ -9,96 +22,5 @@
   margin: 0;
   padding: 0;
   font-family: sans-serif;
+  color: var(--defaultTextColor);
 }
-
-.appheader-container{
-  position: fixed;
-  top: 0;
-  width: 100%;
-  background: #0D2253;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 7vw;
-}
-
-.appheader-container p{
-  color: white;
-  font-size: 1.2rem;
-}
-
-.unicorn{
-  height: var(--headerOffset);
-}
-
-.nav-container {
-  list-style: none;
-  display: flex;
-  align-items: center;
-  gap: 1vw;
-}
-
-.navbar a{
-  color: white;
-  border-radius: var(--buttonRadius);
-  border-color: white;
-  border-style: solid;
-  border-width: 1px;
-  padding: var(--buttonPadding);
-  text-decoration: none;
-}
-
-.button {
-  background: #F92247;
-  border-radius: var(--buttonRadius);
-  padding: var(--buttonPadding);
-}
-
-.navbar a:hover{
-  background-color: white;
-  color: #0D2253;
-}
-
-.navbar .button:hover{
-  background-color: #DB0025;
-  color: white;
-}
-
-.navbar a.active {
-  background-color: white;
-  color: #0D2253;
-}
-
-.sider{
-  background: transparent;
-  position: fixed;
-  top: var(--headerOffset);
-  right: 0;
-  width: 20%;
-  height: calc(100vh - var(--headerOffset));
-  color: white;
-}
-
-.pages-container section{
-  scroll-margin-top: var(--headerOffset);
-  height: 100vh;
-  background: linear-gradient(0deg, rgba(13, 34, 83, 0.95), rgba(13, 34, 83, 0.95)), url(./images/the-persistence-of-memory-1931.jpeg);
-  background-size: cover;
-  color: white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.pages-container :nth-child(1){
-    margin-top: var(--headerOffset);
-}
-
-.greeting{
-  font-size: 1.2rem;
-  color: white;
-  display:block; 
-}
-
-
-
