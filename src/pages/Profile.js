@@ -1,9 +1,9 @@
 function Profile() {
-    return (
-      <section className="profile" id="#profile">
-        <h1>Profil</h1>
-      </section>
-    );
-  }
-  
-  export default Profile;
+  return (
+    <section className="profile" id="#profile">
+      <h1>Profil</h1>
+    </section>
+  );
+}
+
+export default Profile;

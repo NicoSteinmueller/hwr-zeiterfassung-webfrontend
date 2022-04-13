@@ -1,0 +1,35 @@
+.header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: var(--defaultBackgroundColor);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 7vw;
+}
+
+.content section {
+  height: 100vh;
+  background: var(--backgroundImage);
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.sider {
+  background: transparent;
+  position: fixed;
+  top: var(--headerOffset);
+  right: 0;
+  width: 20%;
+  height: calc(100vh - var(--headerOffset));
+}
+
+.footer {
+  padding: 2% 5%;
+  background: var(--primaryRed);
+  display: flex;
+  justify-content: space-between;
+}
