@@ -9,6 +9,10 @@
   padding: 0 7vw;
 }
 
+.appheader h1{
+  color: white;
+}
+
 .appcontent section {
   height: 100vh;
   background: var(--backgroundImage);
@@ -16,6 +20,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.appcontent section h1{
+  color: white;
+  background-color: transparent;
 }
 
 .appsider {
@@ -27,6 +36,11 @@
   height: calc(100vh - var(--headerOffset));
 }
 
+.appsider h1{
+  color: white;
+  background-color: transparent;
+}
+
 .appfooter {
   padding: 2% 5%;
   background: var(--primaryRed);
@@ -34,7 +48,7 @@
   justify-content: space-between;
 }
 
-h1, h3, h5{
+.appfooter h1, h3, h5{
   color: white;
   background-color: transparent;
 }

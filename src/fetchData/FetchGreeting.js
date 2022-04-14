@@ -1,12 +1,5 @@
 import React from "react";
-
-const emailParam = "test";
-const passwordParam =
-  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855";
-
-const user = [`email=${emailParam}`, `password=${passwordParam}`].join("&");
-
-const url = `/human/name?${user}`;
+import sha256 from "js-sha256";
 
 export default class FetchGreeting extends React.Component {
   state = {
@@ -16,6 +9,9 @@ export default class FetchGreeting extends React.Component {
   };
 
   async componentDidMount() {
+    const param = [`email=${this.props.email}`, `password=${sha256(this.props.password)}`].join("&");
+    const url = `/human/name?${param}`;
+    console.log(url);
     const response = await fetch(url);
     const data = await response.json();
     this.setState({

@@ -1,7 +1,12 @@
 import React, { useState } from "react";
-import LoginForm from "./pages/LoginForm";
-import User from "./pages/User";
 import sha256 from "js-sha256";
+import AppHeader from "./layout/AppHeader";
+import AppContent from "./layout/AppContent";
+import AppSider from "./layout/AppSider";
+import AppFooter from "./layout/AppFooter";
+import LoginForm from "./pages/LoginForm";
+
+
 
 function App() {
   const [user, setUser] = useState({ email: "", password: "" });
@@ -13,13 +18,11 @@ function App() {
     let emailInput = details.email;
     let passwordInput = details.password;
   
-    let user = [
+    let param = [
       `email=${emailInput}`,
       `password=${sha256(passwordInput)}`,
     ].join("&");
-    let url = `/login/basicLogin?${user}`;
-
-console.log(url);
+    let url = `/login/basicLogin?${param}`;
 
     fetch(url, {
       method: "POST",
@@ -27,10 +30,10 @@ console.log(url);
       response => {
         if (response.ok) {
           console.log(response.status);
-          setUser({
-            email: details.name,
-            password: details.password
-          })
+            setUser({
+            email: details.email,
+            password: details.password 
+          }) 
           
         } else {
           setError(`Error: ${response.status} ${response.statusText}`)
@@ -47,9 +50,17 @@ console.log(url);
     })
   };
 
+  console.log(user.email);
   return (
     <div className="App">
-      {(user.email !== "") ? <User /> : <LoginForm Login={Login} error={error} />}
+      {(user.email !== "") ? 
+          <>
+          <AppHeader Logout={Logout} email={user.email} password={user.password}/>  
+          <AppContent />
+          <AppSider />
+          <AppFooter />
+        </> 
+         : <LoginForm Login={Login} error={error} />}
     </div>
   );
 }
