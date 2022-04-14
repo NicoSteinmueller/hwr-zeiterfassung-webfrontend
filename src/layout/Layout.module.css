@@ -33,3 +33,8 @@
   display: flex;
   justify-content: space-between;
 }
+
+h1, h3, h5{
+  color: white;
+  background-color: transparent;
+}

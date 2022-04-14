@@ -4,7 +4,7 @@ import Logo from "../components/Logo";
 import classes from "./LoginForm.module.css";
 import "antd/dist/antd.css";
 
-function Login2({ Login, error }) {
+function LoginForm({ Login, error }) {
   const [details, setDetails] = useState({ email: "", password: "" });
 
   const submitHandler = (e) => {
@@ -40,7 +40,7 @@ function Login2({ Login, error }) {
               }
               value={details.password}
             />
-            <Button type="primary" block onClick={submitHandler}>Anmelden</Button>
+            <Button className={classes.button} type="primary" block onClick={submitHandler}>Anmelden</Button>
 
             {error !== "" ? <div className="error">{error}</div> : ""}
           </Space>
@@ -50,4 +50,4 @@ function Login2({ Login, error }) {
   );
 }
 
-export default Login2;
+export default LoginForm;
