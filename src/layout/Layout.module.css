@@ -1,4 +1,4 @@
-.header {
+.appheader {
   position: fixed;
   top: 0;
   width: 100%;
@@ -9,7 +9,7 @@
   padding: 0 7vw;
 }
 
-.content section {
+.appcontent section {
   height: 100vh;
   background: var(--backgroundImage);
   background-size: cover;
@@ -18,7 +18,7 @@
   align-items: center;
 }
 
-.sider {
+.appsider {
   background: transparent;
   position: fixed;
   top: var(--headerOffset);
@@ -27,7 +27,7 @@
   height: calc(100vh - var(--headerOffset));
 }
 
-.footer {
+.appfooter {
   padding: 2% 5%;
   background: var(--primaryRed);
   display: flex;

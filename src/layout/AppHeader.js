@@ -6,7 +6,7 @@ import classes from "./Layout.module.css";
 
 function AppHeader() {
   return (
-    <div className={classes.header}>
+    <div className={classes.appheader}>
       <Logo />
       <Greeting />
       <Navigation />
