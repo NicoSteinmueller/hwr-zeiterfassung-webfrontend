@@ -19,15 +19,18 @@
   text-decoration: none;
 }
 
+
 .container a:hover {
   background-color: white;
   color: var(--primaryBlue);
 }
 
+
 .container a.active {
   background-color: white;
   color: var(--primaryBlue);
 }
+
 
 .container .button {
   background: var(--primaryRed);
@@ -37,4 +40,3 @@
   background-color: var(--secondaryRed);
   color: var(--defaultTextColor);
 }
-

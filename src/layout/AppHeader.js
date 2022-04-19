@@ -5,9 +5,6 @@ import Logo from "../components/Logo";
 import classes from "./Layout.module.css";
 
 
-
-
-
 function AppHeader({Logout, email, password}) {
   return (
     <div className={classes.appheader}>

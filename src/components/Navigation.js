@@ -6,7 +6,6 @@ import classes from "./Navigation.module.css";
 const offset = 0;
 const duration = 500;
 
-
 function Navigation({Logout}) {
 
   const submitHandler = () => {
