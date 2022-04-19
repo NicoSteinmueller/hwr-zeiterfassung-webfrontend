@@ -1,9 +1,9 @@
 import FetchGreeting from "../fetchData/FetchGreeting";
 
-function Greeting() {
+function Greeting({email, password}) {
   return (
     <div>
-      <FetchGreeting />
+      <FetchGreeting email={email} password={password}/>
     </div>
   );
 }

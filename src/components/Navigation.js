@@ -6,7 +6,13 @@ import classes from "./Navigation.module.css";
 const offset = 0;
 const duration = 500;
 
-function Navigation() {
+
+function Navigation({Logout}) {
+
+  const submitHandler = () => {
+    Logout();
+  };
+
   return (
     <div>
       <nav className={classes.navbar}>
@@ -72,7 +78,7 @@ function Navigation() {
             </Link>
           </li>
           <li className={classes.button}>
-            <a href="#logout" className={classes.button}>
+            <a href="#logout" className={classes.button} onClick={submitHandler}>
               Abmelden
             </a>
           </li>
