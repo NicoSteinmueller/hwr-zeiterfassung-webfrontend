@@ -8,7 +8,7 @@ import classes from "./Layout.module.css";
 
 function AppContent() {
   return (
-    <div className={classes.content}>
+    <div className={classes.appcontent}>
       <Timetracker />
       <Correct />
       <Statistics />
