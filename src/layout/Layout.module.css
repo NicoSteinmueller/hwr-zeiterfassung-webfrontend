@@ -13,13 +13,12 @@
   color: white;
 }
 
+
 .appcontent section {
-  height: 100vh;
+  height: calc(100vh - var(--headerOffset));
   background: var(--backgroundImage);
   background-size: cover;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  margin-right: 20%;
 }
 
 .appcontent section h1{

@@ -6,12 +6,12 @@ import Profile from "../pages/Profile";
 
 import classes from "./Layout.module.css";
 
-function AppContent() {
+function AppContent({email, password}) {
   return (
     <div className={classes.appcontent}>
       <Timetracker />
       <Correct />
-      <Statistics />
+      <Statistics email={email} password={password} />
       <Absence />
       <Profile />
     </div>

@@ -3,7 +3,7 @@ import { Link } from "react-scroll";
 
 import classes from "./Navigation.module.css";
 
-const offset = 0;
+const offset = -64;
 const duration = 500;
 
 
