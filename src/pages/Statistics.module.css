@@ -1,0 +1,125 @@
+.statistics{
+    padding: 20px;
+    margin: 0;
+    display: grid;
+    grid-template-areas:
+    "HEADER"
+    "INFO"
+    "BTN"
+    "CHARTCONTAINER";
+    overflow: auto;
+}
+
+.header{
+    grid-area: HEADER;
+    background: transparent;
+}
+
+.infoContainer{
+    display: flex;
+    justify-content: space-evenly;
+    background: transparent;
+    margin: 20px 0;
+}
+
+.infoBox{
+    display: grid;
+    justify-content: center;
+    background-color: white;
+    border-radius: var(--buttonRadius);
+    padding: 5px;
+    max-height: 70px;
+    width: 200px;
+}
+
+.infoBox p{
+    color: var(--primaryBlue);
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 0;
+    background-color: transparent;
+}
+
+
+.btnContainer{
+    grid-area: BTN;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+    background-color: transparent;
+    margin: 20px 0;
+}
+
+.btn{
+    background-color: var(--primaryBlue);
+    color: white;
+    text-decoration: none;
+    border: 1px solid white;
+    padding: 10px;
+    border-radius: var(--buttonRadius);
+}
+
+.btn:hover{
+    background-color: white;
+    color: var(--primaryBlue);
+}
+
+.whiteBox{
+    grid-area: CHARTCONTAINER;
+    display: grid;
+    grid-auto-rows: 1fr;
+    grid-template-areas: 
+    "TIMEINTERVAL CHART"
+    "AVGWORK CHART"
+    "AVGBREAK CHART";
+    background-color: var(--primaryBlue);
+}
+
+.datePicker{
+    grid-area: TIMEINTERVAL;
+    background-color: transparent;
+    height: fit-content;
+    width: fit-content;
+    justify-self: center;
+    align-self: center;
+}
+
+.datePicker input{
+    color: white !important;
+}
+
+
+.caBox1{
+    grid-area: AVGWORK;
+}
+
+.caBox2{
+    grid-area: AVGBREAK;
+}
+
+.caBox1, .caBox2{
+    display: grid;
+    justify-self: center;
+    justify-items: center;
+    height: fit-content;  
+    padding: 20px; 
+    margin: 0 20px; 
+    border-radius: var(--buttonRadius);
+    background-color: white;
+}
+
+:is(.caBox1, .caBox2) :is(h1, h5){
+    color: var(--primaryBlue) !important;
+}
+
+.chart{
+    grid-area: CHART;
+    background-color: #f5f5f5;
+    color: rgb(112, 155, 231, 0.8);
+    display: inline-block;
+}
+
+.chart canvas{
+    background-color: #f5f5f5;
+}

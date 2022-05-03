@@ -5,6 +5,7 @@ import AppContent from "./layout/AppContent";
 import AppSider from "./layout/AppSider";
 import AppFooter from "./layout/AppFooter";
 import LoginForm from "./pages/LoginForm";
+import { BrowserRouter } from "react-router-dom";
 
 
 
@@ -53,14 +54,16 @@ function App() {
   console.log(user.email);
   return (
     <div className="App">
-      {(user.email !== "") ? 
-          <>
-          <AppHeader Logout={Logout} email={user.email} password={user.password}/>  
-          <AppContent />
-          <AppSider />
-          <AppFooter />
-        </> 
-         : <LoginForm Login={Login} error={error} />}
+      <BrowserRouter>
+        {(user.email !== "") ? 
+            <>
+            <AppHeader Logout={Logout} email={user.email} password={user.password}/>  
+            <AppContent email={user.email} password={user.password}/>
+            <AppSider />
+            <AppFooter />
+          </> 
+          : <LoginForm Login={Login} error={error} />}
+      </BrowserRouter>
     </div>
   );
 }
