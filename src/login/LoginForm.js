@@ -1,21 +1,21 @@
-import React, { useState } from "react";
-import { Button, Input, Space } from "antd";
-import Logo from "../components/Logo";
-import classes from "./LoginForm.module.css";
-import "antd/dist/antd.css";
+import React, { useState } from "react"
+import { Button, Input, Space } from "antd"
+import Logo from "../layout/header/navigation/logo/Logo"
+import style from "./LoginForm.module.css"
+import "antd/dist/antd.css"
 
-function LoginForm({ Login, error }) {
-  const [details, setDetails] = useState({ email: "", password: "" });
+export default function LoginForm({ Login, error }) {
+  const [details, setDetails] = useState({ email: "", password: "" })
 
   const submitHandler = (e) => {
-    e.preventDefault();
-    Login(details);
-  };
+    e.preventDefault()
+    Login(details)
+  }
 
   return (
-    <div className={classes.logincontainer}>
-      <div className={classes.login}>
-        <Logo className={classes.logo}> </Logo>
+    <div className={style.logincontainer}>
+      <div className={style.login}>
+        <Logo className={style.logo}> </Logo>
         <form >
           
           <Space direction="vertical">
@@ -40,14 +40,12 @@ function LoginForm({ Login, error }) {
               }
               value={details.password}
             />
-            <Button className={classes.button} type="primary" block onClick={submitHandler}>Anmelden</Button>
+            <Button className={style.button} type="primary" block onClick={submitHandler}>Anmelden</Button>
 
             {error !== "" ? <div className="error">{error}</div> : ""}
           </Space>
         </form>
       </div>
     </div>
-  );
+  )
 }
-
-export default LoginForm;
