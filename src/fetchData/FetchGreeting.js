@@ -11,7 +11,6 @@ export default class FetchGreeting extends React.Component {
   async componentDidMount() {
     const param = [`email=${this.props.email}`, `password=${sha256(this.props.password)}`].join("&");
     const url = `/human/name?${param}`;
-    console.log(url);
     const response = await fetch(url);
     const data = await response.json();
     this.setState({

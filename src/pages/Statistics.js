@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { NavLink, Route, Routes } from "react-router-dom";
-import { DatePicker, Space } from 'antd';
+import { DatePicker } from 'antd';
+import moment from 'moment';
 import classes from "./Statistics.module.css";
 import MyChart from "../components/MyChart";
 
@@ -9,51 +10,10 @@ export default function Statistics({email, password}) {
 
   const { RangePicker } = DatePicker;
   const [datePicker, setDatePicker] = useState('week');
-  const [timeInterval, setTimeInterval] = useState({start: prettyDate(getThisSunday(new Date())) , end: prettyDate(getThisSaturday(new Date()))})
+  const [timeInterval, setTimeInterval] = useState({start: moment().startOf('week').format('YYYY-MM-DD') , end: moment().endOf('week').format('YYYY-MM-DD')})
+  const [avgWorkingTime, setAvgWorkingTime] = useState('Value');
+  const [avgBreak, setAvgBreak] = useState('Value');
 
-  function getThisSaturday(day) {
-    let weekDay = day.getDay();
-    let saturday = day;
-
-    if ( weekDay < 6) {
-      saturday.setDate(day.getDate() + (6 - weekDay));
-      return saturday;
-    }
-
-    return saturday;
-  }
-
-  function getThisSunday(day) {
-    let weekDay = day.getDay();
-    let sunday = day;
-
-    if( weekDay > 0){
-      sunday.setDate(day.getDate() - weekDay );
-      return sunday;
-    }
-
-    return sunday;
-  }
-  
-  function getFirstDayThisMonth(day) {
-    return new Date(day.getFullYear(), day.getMonth(), 1)
-  }
-
-  function getLastDayThisMonth(day) {
-    return new Date(day.getFullYear(), day.getMonth() + 1, 0);
-  }
-
-  function getFirstDayThisYear(day) {
-    return new Date(day.getFullYear(), 0, 1);
-  }
-
-  function getLastDayThisYear(day) {
-    return new Date(day.getFullYear(), 11, 31);
-  }
-
-  function prettyDate(date){
-    return date.toISOString().substring(0,10);
-  }
 
   function handleClickWeek(event) {
     setDatePicker('week');
@@ -71,31 +31,10 @@ export default function Statistics({email, password}) {
     setDatePicker('week');
   }
 
-  function onChange(date, dateString){
-      if(datePicker === 'week'){
-        setTimeInterval({start: prettyDate(getThisSunday(date._d)), end: prettyDate(getThisSaturday(date._d)) })
-      }
-
-      if(datePicker === 'month'){
-        const startday = prettyDate(getFirstDayThisMonth(date._d));
-        setTimeInterval({start: startday, end: prettyDate(getLastDayThisMonth(date._d)) })
-      }
-
-      if(datePicker === 'year'){
-        setTimeInterval({start: prettyDate(getFirstDayThisYear(date._d)), end: prettyDate(getLastDayThisYear(date._d)) })
-      }
-
-      if(datePicker === 'missing'){
-          //TODO
-      }
+  function onChange(date){
+    setTimeInterval({start: moment(date._d).startOf(datePicker).format('YYYY-MM-DD'), 
+      end:  moment(date._d).endOf(datePicker).format('YYYY-MM-DD')})
   }
-
-  useEffect(() => {
-    console.log(timeInterval);
-  }, [timeInterval]);
-
- 
-
 
   return (
     <section className={classes.statistics} id="#statistics">
@@ -172,7 +111,7 @@ export default function Statistics({email, password}) {
         <div className={classes.datePicker}>
           <DatePicker 
             size={'large'}
-            onChange={(date, dateString) => onChange(date, dateString)}
+            onChange={(date) => onChange(date)}
             style={{
               textDecorationColor: 'white',
               fontSize: '1.5em',
@@ -181,20 +120,55 @@ export default function Statistics({email, password}) {
             bordered={false} />     
         </div>   
         <div className={classes.caBox1}>
-          <h1>Value</h1>
+          <h1>{avgWorkingTime}</h1>
           <h5>Ø Arbeitszeit/Woche</h5>
         </div>
         <div className={classes.caBox2}>
-          <h1>Value</h1>
+          <h1>{avgBreak}</h1>
           <h5>Ø Pausenzeit/Woche</h5>
         </div>
         <div className={classes.chart}>
           <Routes>
-            <Route path="/" exact element={<MyChart email={email} password={password} start={timeInterval.start} end={timeInterval.end}/>}/>
-            <Route path="/Week" element={<MyChart email={email} password={password} start={timeInterval.start} end={timeInterval.end}/>}/>
-            <Route path="/Month" element={<MyChart email={email} password={password} start={timeInterval.start} end={timeInterval.end}/>}/>
-            <Route path="/Year" element={<MyChart email={email} password={password} start={timeInterval.start} end={timeInterval.end}/>}/>
-            <Route path="/Missing" element={<MyChart email={email} password={password} start={'2022-04-01'} end={'2022-04-30'}/>}/>
+            <Route path="/" exact element={
+              <MyChart 
+                changeAvgWorkingTime={newAvgWorkingTime => setAvgWorkingTime(newAvgWorkingTime)} 
+                changeAvgBreak={newAvgBreak => setAvgBreak(newAvgBreak)}
+                email={email} 
+                password={password} 
+                start={timeInterval.start} 
+                end={timeInterval.end}/>}/>
+            <Route path="/Week" element={
+              <MyChart 
+                changeAvgWorkingTime={newAvgWorkingTime => setAvgWorkingTime(newAvgWorkingTime)}
+                changeAvgBreak={newAvgBreak => setAvgBreak(newAvgBreak)}
+                email={email} 
+                password={password} 
+                start={timeInterval.start} 
+                end={timeInterval.end}/>}/>
+            <Route path="/Month" element={
+              <MyChart 
+                changeAvgWorkingTime={newAvgWorkingTime => setAvgWorkingTime(newAvgWorkingTime)}
+                changeAvgBreak={newAvgBreak => setAvgBreak(newAvgBreak)}
+                email={email} 
+                password={password} 
+                start={timeInterval.start} 
+                end={timeInterval.end}/>}/>
+            <Route path="/Year" element={
+              <MyChart 
+                changeAvgWorkingTime={newAvgWorkingTime => setAvgWorkingTime(newAvgWorkingTime)}
+                changeAvgBreak={newAvgBreak => setAvgBreak(newAvgBreak)}
+                email={email} 
+                password={password} 
+                start={timeInterval.start} 
+                end={timeInterval.end}/>}/>
+            <Route path="/Missing" element={
+              <MyChart 
+                changeAvgWorkingTime={newAvgWorkingTime => setAvgWorkingTime(newAvgWorkingTime)}
+                changeAvgBreak={newAvgBreak => setAvgBreak(newAvgBreak)}
+                email={email} 
+                password={password} 
+                start={null} 
+                end={null}/>}/>
           </Routes>
         </div>
       </div>

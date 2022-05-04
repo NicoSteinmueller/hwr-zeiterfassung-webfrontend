@@ -1,3 +1,5 @@
+import React from "react";
+
 function Timetracker() {
   return (
     <section className="timetracker" id="#timetracker">

@@ -1,3 +1,4 @@
+import React from "react";
 import Greeting from "../components/Greeting";
 import Navigation from "../components/Navigation";
 import Logo from "../components/Logo";
