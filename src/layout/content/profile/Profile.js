@@ -1,11 +1,9 @@
-import React from "react";
+import React from "react"
 
-function Profile() {
+export default function Profile() {
   return (
     <section className="profile" id="#profile">
       <h1>Profil</h1>
     </section>
-  );
+  )
 }
-
-export default Profile;

@@ -1,17 +1,17 @@
-import React from "react";
-import { Link } from "react-scroll";
+import React from "react"
+import { Link } from "react-scroll"
 
-import classes from "./Navigation.module.css";
+import classes from "./Navigation.module.css"
 
-const offset = -64;
-const duration = 500;
+const offset = -64
+const duration = 500
 
 
-function Navigation({Logout}) {
+export default function Navigation({Logout}) {
 
   const submitHandler = () => {
-    Logout();
-  };
+    Logout()
+  }
 
   return (
     <div>
@@ -85,7 +85,5 @@ function Navigation({Logout}) {
         </ul>
       </nav>
     </div>
-  );
+  )
 }
-
-export default Navigation;

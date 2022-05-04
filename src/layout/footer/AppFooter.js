@@ -1,14 +1,12 @@
-import React from "react";
-import classes from "./Layout.module.css";
+import React from "react"
+import classes from "../Layout.module.css"
 
-function AppFooter() {
+export default function AppFooter() {
   return (
     <div className={classes.appfooter}>
       <h5>IMPERIO!</h5>
       <h3>CRUCIO!</h3>
       <h1>AVADA KEDAVRA!</h1>  
     </div>
-  );
+  )
 }
-
-export default AppFooter;

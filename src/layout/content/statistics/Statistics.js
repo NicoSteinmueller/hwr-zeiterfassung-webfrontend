@@ -1,34 +1,34 @@
-import React, { useEffect, useState } from 'react';
-import { NavLink, Route, Routes } from "react-router-dom";
-import { DatePicker } from 'antd';
-import moment from 'moment';
-import classes from "./Statistics.module.css";
-import MyChart from "../components/MyChart";
+import React, { useEffect, useState } from 'react'
+import { NavLink, Route, Routes } from "react-router-dom"
+import { DatePicker } from 'antd'
+import moment from 'moment'
+import style from "./Statistics.module.css"
+import MyChart from "./chart/MyChart"
 
 
 export default function Statistics({email, password}) {
 
-  const { RangePicker } = DatePicker;
-  const [datePicker, setDatePicker] = useState('week');
+  const { RangePicker } = DatePicker
+  const [datePicker, setDatePicker] = useState('week')
   const [timeInterval, setTimeInterval] = useState({start: moment().startOf('week').format('YYYY-MM-DD') , end: moment().endOf('week').format('YYYY-MM-DD')})
-  const [avgWorkingTime, setAvgWorkingTime] = useState('Value');
-  const [avgBreak, setAvgBreak] = useState('Value');
+  const [avgWorkingTime, setAvgWorkingTime] = useState('Value')
+  const [avgBreak, setAvgBreak] = useState('Value')
 
 
   function handleClickWeek(event) {
-    setDatePicker('week');
+    setDatePicker('week')
   }
 
   function handleClickMonth(event) {
-    setDatePicker('month');
+    setDatePicker('month')
   }
 
   function handleClickYear(event) {
-    setDatePicker('year');
+    setDatePicker('year')
   }
 
   function handleClickMissing(event) {
-    setDatePicker('week');
+    setDatePicker('week')
   }
 
   function onChange(date){
@@ -37,39 +37,39 @@ export default function Statistics({email, password}) {
   }
 
   return (
-    <section className={classes.statistics} id="#statistics">
-      <div className={classes.header}>
+    <section className={style.statistics} id="#statistics">
+      <div className={style.header}>
         <h1>Statistik</h1>
       </div>
-      <div className={classes.infoContainer}>
-        <div className={classes.infoBox}>
+      <div className={style.infoContainer}>
+        <div className={style.infoBox}>
           <h5> Arbeitszeitkonto </h5>
           <p>WiP</p>
         </div>
-        <div className={classes.infoBox}>
+        <div className={style.infoBox}>
           <h5> Urlaubstage gesamt </h5>
           <p>WiP</p>
         </div>
-        <div className={classes.infoBox}>
+        <div className={style.infoBox}>
           <h5> Urlaubstage Übertrag </h5>
           <p>WiP</p>
         </div>
-        <div className={classes.infoBox}>
+        <div className={style.infoBox}>
           <h5> Urlaubstage genommen</h5>
           <p>WiP</p>
         </div>
-        <div className={classes.infoBox}>
+        <div className={style.infoBox}>
           <h5> Urlaubstage geplant </h5>
           <p>WiP</p>
         </div>
-        <div className={classes.infoBox}>
+        <div className={style.infoBox}>
           <h5> Urlaubstage Rest </h5>
           <p>WiP</p>
         </div>
       </div>
-      <div className={classes.btnContainer}>
+      <div className={style.btnContainer}>
         <NavLink 
-        className={classes.btn} 
+        className={style.btn} 
         to="/Week" 
         onClick={ handleClickWeek }
         style={({ isActive }) => ({
@@ -78,7 +78,7 @@ export default function Statistics({email, password}) {
         })}>Wochenübersicht</NavLink>
 
         <NavLink 
-        className={classes.btn} 
+        className={style.btn} 
         to="/Month" 
         onClick={ handleClickMonth }
 
@@ -88,7 +88,7 @@ export default function Statistics({email, password}) {
         })}>Monatsübersicht</NavLink>
 
         <NavLink 
-        className={classes.btn} 
+        className={style.btn} 
         to="/Year" 
         onClick={ handleClickYear }
 
@@ -98,7 +98,7 @@ export default function Statistics({email, password}) {
         })}>Jahresübersicht</NavLink>
 
         <NavLink 
-        className={classes.btn} 
+        className={style.btn} 
         to="/Missing" 
         onClick={ handleClickMissing }
         style={({ isActive }) => ({
@@ -107,8 +107,8 @@ export default function Statistics({email, password}) {
         })}>Abwesenheitübersicht</NavLink>
 
       </div>
-      <div className={classes.whiteBox}>
-        <div className={classes.datePicker}>
+      <div className={style.whiteBox}>
+        <div className={style.datePicker}>
           <DatePicker 
             size={'large'}
             onChange={(date) => onChange(date)}
@@ -119,15 +119,15 @@ export default function Statistics({email, password}) {
             picker={datePicker} 
             bordered={false} />     
         </div>   
-        <div className={classes.caBox1}>
+        <div className={style.caBox1}>
           <h1>{avgWorkingTime}</h1>
           <h5>Ø Arbeitszeit/Woche</h5>
         </div>
-        <div className={classes.caBox2}>
+        <div className={style.caBox2}>
           <h1>{avgBreak}</h1>
           <h5>Ø Pausenzeit/Woche</h5>
         </div>
-        <div className={classes.chart}>
+        <div className={style.chart}>
           <Routes>
             <Route path="/" exact element={
               <MyChart 
@@ -174,7 +174,7 @@ export default function Statistics({email, password}) {
       </div>
 
     </section>
-  );
+  )
 }
 
 
