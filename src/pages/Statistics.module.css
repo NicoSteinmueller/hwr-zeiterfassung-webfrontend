@@ -109,7 +109,7 @@
     background-color: white;
 }
 
-:is(.caBox1, .caBox2) :is(h1, h5){
+.caBox1 h1, .caBox1 h5, .caBox2 h1, .caBox2 h5{
     color: var(--primaryBlue) !important;
 }
 

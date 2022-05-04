@@ -9,12 +9,11 @@ import { BrowserRouter } from "react-router-dom";
 
 
 
-function App() {
+export default function App() {
   const [user, setUser] = useState({ email: "", password: "" });
   const [error, setError] = useState("");
 
   const Login = (details) => {
-    console.log(details);
   
     let emailInput = details.email;
     let passwordInput = details.password;
@@ -30,7 +29,6 @@ function App() {
     }).then(
       response => {
         if (response.ok) {
-          console.log(response.status);
             setUser({
             email: details.email,
             password: details.password 
@@ -44,14 +42,12 @@ function App() {
   };
 
   const Logout = () => {
-    console.log("Logout");
     setUser({
       email:"",
       password:""
     })
   };
 
-  console.log(user.email);
   return (
     <div className="App">
       <BrowserRouter>
@@ -67,5 +63,3 @@ function App() {
     </div>
   );
 }
-
-export default App;

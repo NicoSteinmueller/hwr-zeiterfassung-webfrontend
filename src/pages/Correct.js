@@ -1,3 +1,5 @@
+import React from "react";
+
 function Correct() {
   return (
     <section className="correct" id="#correct">

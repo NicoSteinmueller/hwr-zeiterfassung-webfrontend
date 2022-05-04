@@ -1,3 +1,5 @@
+import React from "react";
+
 function Absence() {
   return (
     <section className="absence" id="#absence">
