@@ -10,8 +10,8 @@ export default function AppContent({email, password}) {
   return (
     <div className={style.appcontent}>
       <Timetracker />
-      <Correct />
-      <Statistics email={email} password={password} />
+      <Correct email={email} password={password}/>
+      <Statistics email={email} password={password}/>
       <Absence />
       <Profile />
     </div>
