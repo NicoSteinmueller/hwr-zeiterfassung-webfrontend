@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import sha256 from "js-sha256"
 import AppHeader from "./layout/header/AppHeader"
 import AppContent from "./layout/content/AppContent"

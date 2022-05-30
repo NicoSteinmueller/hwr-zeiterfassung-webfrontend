@@ -4,66 +4,114 @@ import sha256 from "js-sha256"
 import { Button, DatePicker } from 'antd'
 import style from "./Correct.module.css"
 import TimeField from "react-simple-timefield"
+import Select from 'react-select'
 
 
 
 export default function Correct({email, password}) {
 
   const { RangePicker } = DatePicker
-  const [data, setData] = useState(null)
-  const [responseStatus, setResponseStatus] = useState(null)
+  const [dayAndTimesDataJSON, setDayAndTimesDataJSON] = useState(null)
+  const [projectDataJSON, setProjectDataJSON] = useState(null)
+  const [selectedDate, setSelectedDate] = useState(null)
   const [workTimes, setWorkTimes] = useState([])
   const [breakTimes, setBreakTimes] = useState([])
 
-  async function fetchTimesData(email, password, date) {
-
-    const param = [`email=${email}`, `password=${sha256(password)}`, `date=${date}`].join("&")
+  async function fetchTimesData() {
+    const param = [`email=${email}`, `password=${sha256(password)}`, `date=${selectedDate}`].join("&")
     const url = `/correct/getDayInformationAndTimes?${param}`
     const response = await fetch(url)
+
     if(response.ok){
-      setData(await response.json())
-      mapWorkingTimes(data)
+      setDayAndTimesDataJSON(await response.json())
     }
-    setResponseStatus(response.status)  
+  }
+
+  async function fetchProjectData() {
+    const param = [`email=${email}`, `password=${sha256(password)}`].join("&")
+    const url = `/human/getAllProjects?${param}`
+    const response = await fetch(url)
+    
+    if(response.ok){
+      setProjectDataJSON(await response.json())
+    }
   }
 
   function onChange(date){
-    const day = moment(date._d).format('YYYY-MM-DD')
-    fetchTimesData(email, password, day)
+    setSelectedDate(moment(date._d).format('YYYY-MM-DD'))
   }
 
-  function mapWorkingTimes(data){
-    const work =  data.times.filter(time => time.pause === false)
-    setWorkTimes(prevState => work)
-  }
+  function onChangeTimeFieldHandler(index, newValue, oldValue, type, timing){
+    const ISONewValue = moment(oldValue).format('YYYY-MM-DDT') + newValue + ':00'  
+    
+    if(type === 'work'){
+      let tempArray = [... workTimes]
 
-  function mapBreakTimes(data){
-    return data.times.filter(time => time.pause === true)
-  }
+      if(timing === 'start'){
+        tempArray[index].start = ISONewValue
+        setWorkTimes(tempArray)
+      }else if(timing === 'end'){
+        tempArray[index].end = ISONewValue
+        setWorkTimes(tempArray)
+      }else{
+        throw 'IllegalStateException'
+      }
+    }else if(type === 'break'){
+      let tempArray = [... breakTimes]
 
-  function updateList(index, typ, newValue){
-    if(typ === 'work'){
-      setWorkTimes(workTimes[index].start = newValue)
+      if(timing === 'start'){
+        tempArray[index].start = ISONewValue
+        setBreakTimes(tempArray)
+      }else if(timing === 'end'){
+        tempArray[index].end = ISONewValue
+        setBreakTimes(tempArray)
+      }else{
+        throw 'IllegalStateException'
+      }
+    }else{
+      throw 'IllegalStateException'
     }
   }
 
-  const updateTimesHandler = (event) =>{
-    event.preventDefault()
-    // fetch post data 
+  async function updateTimesHandler(){
+    const postTimes = workTimes.concat(breakTimes)
+    const date = selectedDate
+    const times = postTimes
+
+    const param = [`email=${email}`, `password=${sha256(password)}`, `targetDailyWorkingTime=8.0` ].join("&")
+    const url = `/correct/times?${param}`
+
+    await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({date, times})
+    })
+    
   }
 
   useEffect(() => {
-    console.log(data)
-    if(data !== null){
-      console.log(workTimes)
-      console.log(breakTimes)
-    }
-  }, [data])
+
+  },[projectDataJSON])
 
   useEffect(() => {
-    console.log(workTimes)
-  }, [workTimes])
+    fetchProjectData()
+  }, [email, password])
 
+  useEffect(() => {
+    fetchTimesData()
+  }, [selectedDate])
+
+  useEffect(() => {
+    if(dayAndTimesDataJSON !== null){
+      setWorkTimes(dayAndTimesDataJSON.times.filter(time => !time.pause))
+      setBreakTimes(dayAndTimesDataJSON.times.filter(time => time.pause))
+    }else{
+      setWorkTimes([])
+      setBreakTimes([])
+    }
+  }, [dayAndTimesDataJSON])
 
   return (
     <section id="#correct">
@@ -88,9 +136,9 @@ export default function Correct({email, password}) {
             {(workTimes !== null) ?
               workTimes.map((time, index) => 
                 <>
-                  <input key={index} defaultValue={time.project.name}/>
-                  <TimeField key={index} value={moment(time.start).format('HH:mm')}/>
-                  <TimeField key={index} value={moment(time.end).format('HH:mm')}/>
+                  <Select key={index} options={[{value: 'test', label: 'test'}]}/>
+                  <TimeField key={index} value={moment(time.start).format('HH:mm')} onChange={(event, value) => onChangeTimeFieldHandler(index, value, time.start, 'work', 'start')}/>
+                  <TimeField key={index} value={moment(time.end).format('HH:mm')} onChange={(event, value) => onChangeTimeFieldHandler(index, value, time.start, 'work', 'end')}/>
                 </>) 
                 : <div/> 
             } 
@@ -100,17 +148,17 @@ export default function Correct({email, password}) {
             <h2>Pausenbeginn</h2>
             <h2>Pausenende</h2>
             {(breakTimes !== null) ?
-              breakTimes.map(time => 
+              breakTimes.map((time, index) => 
                 <>
                   <input defaultValue={time.project.name}/>
-                  <TimeField value={moment(time.start).format('HH:mm')}/>
-                  <TimeField value={moment(time.end).format('HH:mm')}/>
+                  <TimeField key={index} value={moment(time.start).format('HH:mm')}onChange={(event, value) => onChangeTimeFieldHandler(index, value, time.start, 'break', 'start')}/>
+                  <TimeField key={index} value={moment(time.end).format('HH:mm')}onChange={(event, value) => onChangeTimeFieldHandler(index, value, time.start, 'break', 'end')}/>
                 </>) 
                 : <div/> 
             } 
           </div>
         </div>
-        <Button type='primary' onClick={updateTimesHandler}> Änderung Speichern </Button>
+        <Button type='primary' onClick={(event) => updateTimesHandler()}> Änderung Speichern </Button>
       </div>
     </section>
   )
