@@ -49,7 +49,6 @@ export default function MyChart(props) {
     props.changeAvgBreak(avgBreak.toFixed(decimalPlaces))
   }, [dateInterval])
 
-
   return (
     <Bar
         options={{
