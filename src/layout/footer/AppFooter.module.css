@@ -1,0 +1,16 @@
+.link {
+    color: white;
+    font-size: 1.5em;
+    font-weight: bold;
+    background-color: transparent;
+}
+
+.link:hover{
+    color: var(--primaryBlue);
+}
+
+.logo {
+    height: 2.5em;
+    background-color: transparent;
+    padding: 10px;
+}
