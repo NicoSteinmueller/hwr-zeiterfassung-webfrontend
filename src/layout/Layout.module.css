@@ -2,6 +2,7 @@
   position: fixed;
   top: 0;
   width: 100%;
+  z-index: 1;
   background: var(--defaultBackgroundColor);
   display: flex;
   justify-content: space-between;
@@ -48,6 +49,8 @@
   background: var(--primaryRed);
   display: flex;
   justify-content: space-between;
+  z-index: 1;
+  position: relative;
 }
 
 .appfooter h1, h3, h5{
