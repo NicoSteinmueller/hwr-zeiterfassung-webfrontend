@@ -33,6 +33,9 @@
   right: 0;
   width: 20%;
   height: calc(100vh - var(--headerOffset));
+  display: grid;
+  justify-content: center;
+  align-content: space-around;
 }
 
 .appsider h1{

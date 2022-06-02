@@ -1,0 +1,23 @@
+.container{
+    display: grid;
+    justify-content: center;
+    padding: 10px;
+    background-color: white;
+    border-radius: var(--buttonRadius);
+}
+
+.container h2{
+    background-color: transparent;
+    color: var(--primaryBlue);
+}
+
+.time{
+    font-weight: bold;
+    justify-self: center;
+}
+.disabled{
+    font-weight: bold;
+    justify-self: center;
+    color: var(--secondaryBlue) !important;
+    opacity: 0.3;
+}
