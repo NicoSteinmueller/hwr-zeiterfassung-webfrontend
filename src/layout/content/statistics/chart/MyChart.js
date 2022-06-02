@@ -19,18 +19,6 @@ export default function MyChart(props) {
     }
     setResponseStatus(response.status)  
   }
-  
-  function dataToDate(data){
-    return data.date
-  }
-  
-  function dataToWorkTime(data){
-    return data.workTime
-  }
-
-  function dataToBreak(data){
-    return data.break
-  }
 
   function calculateAverage(workingTimes) {
     const sum = workingTimes.reduce((a, b) => a + b, 0)
@@ -42,8 +30,8 @@ export default function MyChart(props) {
   }, [props.email,props.password, props.start, props.end])
 
   useEffect(() => {
-    const avgWorkingTime = Number(calculateAverage(dateInterval.map(dataToWorkTime)))
-    const avgBreak = Number(calculateAverage(dateInterval.map(dataToBreak)))
+    const avgWorkingTime = Number(calculateAverage(dateInterval.map(data => data.workTime)))
+    const avgBreak = Number(calculateAverage(dateInterval.map(data => data.break)))
     const decimalPlaces = 1
     props.changeAvgWorkingTime(avgWorkingTime.toFixed(decimalPlaces))
     props.changeAvgBreak(avgBreak.toFixed(decimalPlaces))
@@ -56,14 +44,14 @@ export default function MyChart(props) {
           maintainAspectRatio: false,
         }}
         data={{
-          labels: (responseStatus === 200 ? dateInterval.map(dataToDate) : []) ,
+          labels: (responseStatus === 200 ? dateInterval.map(data => data.date) : []) ,
           datasets:[{
             backgroundColor: 'rgb(112, 155, 231, 0.8)',
             borderColor: 'rgb(13, 34, 83)',
             borderWidth: 2,
             borderRadius: 20,
             label: 'Arbeitszeiten',
-            data: (responseStatus === 200 ? dateInterval.map(dataToWorkTime) : []) ,
+            data: (responseStatus === 200 ? dateInterval.map(data => data.workTime) : []) ,
           }]
         }}
       />

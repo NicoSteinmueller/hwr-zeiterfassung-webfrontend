@@ -23,6 +23,8 @@ export default function App() {
     ].join("&")
     let url = `/login/basicLogin?${param}`
 
+    console.log(url)
+
     fetch(url, {
       method: "POST",
     }).then(
