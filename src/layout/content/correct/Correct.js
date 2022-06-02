@@ -240,7 +240,18 @@ export default function Correct({email, password}) {
             } 
           </div>
         </div>
-        <Button type='primary' onClick={(event) => updateTimesHandler()}> Änderung Speichern </Button>
+        <div className={style.buttonLayout}>
+        <Button 
+          type='primary' 
+          style={{
+            backgroundColor: 'var(--primaryBlue)',
+            borderColor: 'white',
+            borderRadius: 'var(--buttonRadius)',
+          }}
+          onClick={(event) => updateTimesHandler()}
+        > Änderung Speichern 
+        </Button>
+        </div>
       </div>
     </section>
   )
