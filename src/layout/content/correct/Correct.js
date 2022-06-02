@@ -167,14 +167,17 @@ export default function Correct({email, password}) {
                     styles={
                       {option: (provided, state) => ({
                         ...provided,
-                        "&:hover": {
-                          backgroundColor: 'var(--secondaryBlue)'
-                        }
+                        "&:hover":{
+                          backgroundColor: 'var(--secondaryBlue)',
+                        },
+                        backgroundColor: 'var(--primaryBlue)',
                         }),
                         control: (provided) => ({
                           ...provided,
+                          backgroundColor: 'var(--primaryBlue)'
                         }),
                       singleValue: (provided, state) => ({
+                          ...provided,
                          color: 'white',
                          fontSize: 'bold',                      
                         })
@@ -214,12 +217,15 @@ export default function Correct({email, password}) {
                         ...provided,
                         "&:hover": {
                           backgroundColor: 'var(--secondaryBlue)'
-                        }
+                        },
+                        backgroundColor: 'var(--primaryBlue)',
                         }),
                         control: (provided) => ({
                           ...provided,
+                          backgroundColor: 'var(--primaryBlue)',
                         }),
                       singleValue: (provided, state) => ({
+                         ...provided,
                          color: 'white',
                          fontSize: 'bold',                      
                         })
