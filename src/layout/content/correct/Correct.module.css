@@ -26,6 +26,7 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     background-color: transparent;
+    grid-gap: 15px;
 }
 
 .workContainer h2,

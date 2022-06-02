@@ -12,7 +12,7 @@ export default function Correct({email, password}) {
 
   const { RangePicker } = DatePicker
   const [dayAndTimesDataJSON, setDayAndTimesDataJSON] = useState(null)
-  const [projectDataJSON, setProjectDataJSON] = useState(null)
+  const [projectDataJSON, setProjectDataJSON] = useState([])
   const [selectedDate, setSelectedDate] = useState(null)
   const [workTimes, setWorkTimes] = useState([])
   const [breakTimes, setBreakTimes] = useState([])
@@ -41,11 +41,25 @@ export default function Correct({email, password}) {
     setSelectedDate(moment(date._d).format('YYYY-MM-DD'))
   }
 
+  function onchangeSelectProjectHandler(index, newProject, typ){
+    if(typ === 'work'){
+      let tempArray = [...workTimes]
+      tempArray[index].project = newProject
+      setWorkTimes(tempArray)
+    }else if(typ === 'break'){
+      let tempArray = [...breakTimes]
+      tempArray[index].project = newProject
+      setBreakTimes(tempArray)
+    }else{
+      throw 'IllegalStateException'
+    }
+  }
+
   function onChangeTimeFieldHandler(index, newValue, oldValue, type, timing){
     const ISONewValue = moment(oldValue).format('YYYY-MM-DDT') + newValue + ':00'  
     
     if(type === 'work'){
-      let tempArray = [... workTimes]
+      let tempArray = [...workTimes]
 
       if(timing === 'start'){
         tempArray[index].start = ISONewValue
@@ -57,7 +71,7 @@ export default function Correct({email, password}) {
         throw 'IllegalStateException'
       }
     }else if(type === 'break'){
-      let tempArray = [... breakTimes]
+      let tempArray = [...breakTimes]
 
       if(timing === 'start'){
         tempArray[index].start = ISONewValue
@@ -78,7 +92,7 @@ export default function Correct({email, password}) {
     const date = selectedDate
     const times = postTimes
 
-    const param = [`email=${email}`, `password=${sha256(password)}`, `targetDailyWorkingTime=8.0` ].join("&")
+    const param = [`email=${email}`, `password=${sha256(password)}` ].join("&")
     const url = `/correct/times?${param}`
 
     await fetch(url, {
@@ -92,7 +106,7 @@ export default function Correct({email, password}) {
   }
 
   useEffect(() => {
-
+    console.log(projectDataJSON)
   },[projectDataJSON])
 
   useEffect(() => {
@@ -112,7 +126,7 @@ export default function Correct({email, password}) {
       setBreakTimes([])
     }
   }, [dayAndTimesDataJSON])
-
+  
   return (
     <section id="#correct">
       <div className={style.container}>
@@ -136,7 +150,38 @@ export default function Correct({email, password}) {
             {(workTimes !== null) ?
               workTimes.map((time, index) => 
                 <>
-                  <Select key={index} options={[{value: 'test', label: 'test'}]}/>
+                  <Select 
+                    defaultValue={projectDataJSON.map(project => {
+                      const newArray = {}
+                      newArray.value = project
+                      newArray.label = project.name
+                      return newArray
+                      })
+                      .filter(value => value.label === time.project.name)}
+                    options={projectDataJSON.map(project => {
+                      const newArray = {}
+                      newArray.value = project
+                      newArray.label = project.name
+                      return newArray
+                      })}
+                    styles={
+                      {option: (provided, state) => ({
+                        ...provided,
+                        "&:hover": {
+                          backgroundColor: 'var(--secondaryBlue)'
+                        }
+                        }),
+                        control: (provided) => ({
+                          ...provided,
+                        }),
+                      singleValue: (provided, state) => ({
+                         color: 'white',
+                         fontSize: 'bold',                      
+                        })
+                      }
+                    }
+                    onChange={(newValue, event) => onchangeSelectProjectHandler(index, newValue.value, 'work')}
+                  />
                   <TimeField key={index} value={moment(time.start).format('HH:mm')} onChange={(event, value) => onChangeTimeFieldHandler(index, value, time.start, 'work', 'start')}/>
                   <TimeField key={index} value={moment(time.end).format('HH:mm')} onChange={(event, value) => onChangeTimeFieldHandler(index, value, time.start, 'work', 'end')}/>
                 </>) 
@@ -150,7 +195,38 @@ export default function Correct({email, password}) {
             {(breakTimes !== null) ?
               breakTimes.map((time, index) => 
                 <>
-                  <input defaultValue={time.project.name}/>
+                   <Select 
+                    defaultValue={projectDataJSON.map(project => {
+                      const newArray = {}
+                      newArray.value = project
+                      newArray.label = project.name
+                      return newArray
+                      })
+                      .filter(value => value.label === time.project.name)}
+                    options={projectDataJSON.map(project => {
+                      const newArray = {}
+                      newArray.value = project
+                      newArray.label = project.name
+                      return newArray
+                      })}
+                    styles={
+                      {option: (provided, state) => ({
+                        ...provided,
+                        "&:hover": {
+                          backgroundColor: 'var(--secondaryBlue)'
+                        }
+                        }),
+                        control: (provided) => ({
+                          ...provided,
+                        }),
+                      singleValue: (provided, state) => ({
+                         color: 'white',
+                         fontSize: 'bold',                      
+                        })
+                      }
+                    }
+                    onChange={(newValue, event) => onchangeSelectProjectHandler(index, newValue.value, 'break')}
+                  />
                   <TimeField key={index} value={moment(time.start).format('HH:mm')}onChange={(event, value) => onChangeTimeFieldHandler(index, value, time.start, 'break', 'start')}/>
                   <TimeField key={index} value={moment(time.end).format('HH:mm')}onChange={(event, value) => onChangeTimeFieldHandler(index, value, time.start, 'break', 'end')}/>
                 </>) 
